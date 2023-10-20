@@ -7,113 +7,66 @@ let templeList= [];
 
 /* async displayTemples Function */
 const displayTemples = (temples) => {
-    temples.forEach((temple) =>
-    {
+    temples.forEach(temple => {
         const article = document.createElement("article");
-        
+        templesElement.appendChild(article);
+
         const h3 = document.createElement("h3");
-        h3.textContent = temple.templeName;
+        h3.innerText = temple.templeName;
+        article.appendChild(h3);
 
         const img = document.createElement("img");
         img.setAttribute('src', temple.imageUrl);
         img.setAttribute('alt', temple.location);
-
-        article.appendChild(h3);
         article.appendChild(img);
 
-        templesElement.appendChild(article);
     });
 }
 
-
-
 /* async getTemples Function using fetch()*/
-const getTemples = async () =>
-{
-    try 
-    {
-        fetch("https://byui-cse.github.io/cse121b-ww-course/resources/temples.json")
-        .then(response => {
-            if (!response.ok){
-                throw new Error('network response was not ok.');
-            }
-            return response.json();
-        })
-        .then(data =>{
-            templeList = data;
-            // displayTemples(templeList);
-            console.log(templeList);
-        })
-        .catch(error => {
-            console.error('Error Fetching Data:', error);
-        })
-    //     const response = await fetch( "https://byui-cse.github.io/cse121b-ww-course/resources/temples.json");
-    //     if (!response.ok)
-    //     {
-    //         throw new Error('Fetch Failed!');
-    //     }
-    //     const results = await response.json();
-    //     templeList= Array.isArray(results) ? results: Object.entries(results);
-    //     displayTemples(templeList);
-    //     console.log(results);
-    //     return templeList;
-    // } catch (error) {
-    //     console.error('Error fetching data:', error);
-    } catch (error) {console.error('Error Fetching Data:', error)};
-}
-
+const getTemples = async () => {
+    // try {
+        const response = await fetch("https://byui-cse.github.io/cse121b-ww-course/resources/temples.json");
+        const data = await response.json();
+        templeList = Array.isArray(data) ? data : [];
+        displayTemples(templeList);
+        console.log(templeList);
+};
 
 /* reset Function */
-
-const resetFunction = (list) => 
+const resetFunction = () => 
 {
-    list.length = 0 ;
-    return list;
-}
+    templesElement.innerHTML = "";
+};
 
 
 /* sortBy Function */
 const sortBy = (templeList) => {
-    let sortedTemples = [];
-    let filter = document.querySelector("#sortBy").value;
-
-    switch (filter){
-        case "utah":
-            sortedTemples = templeList.filter(temple => temple.location("Utah"));
-            displayTemples(sortedTemples);
+    resetFunction();
+    const filter = document.getElementById("sortBy").value;
+    switch (filter) {
+        case 'utah':
+            displayTemples(temples.filter(temple => temple.imageUrl.includes('Utah')));
             break;
-        case "notutah":
-            sortedTemples = templeList.filter(temple => !temple.location.includes("Utah"));
-            displayTemples(sortedTemples);
-            break;    
-        case "older":
-            sortedTemples =  templeList.filter(temple => new Date(temple.dedicated) < new Date("1950-01-01"));
-            displayTemples(sortedTemples);
-            break;    
-        case "all":
-            sortedTemples = templeList;
+        case 'notutah':
+            displayTemples(temples.filter(temple => !temple.imageUrl.includes('Utah')));
+            break;
+        case 'older':
+            displayTemples(temples.filter(temple => new Date(temple.dedicated) < new Date("1950-01-01")));
+            break;   
+        case 'all':
+            displayTemples(temples);
             break;
         default:
-            sortedTemples = [];
+            displayTemples(temples);
+            break;
     }
-    displayTemples(sortedTemples);
-}   
-
-
-
-// const onSortByChange = () => {
-//     const filter = document.querySelector("#sortBy").value;
-//     const sortedTemples = sortByFilter(filter);
-//     displayTemples(sortedTemples)
-// }
-
-// document.querySelector("#sortBy").addEventListener("change", onSortByChange);
-
-
-
-
+};
 
 /* Event Listener */
-document.querySelector("#sortBy").addEventListener("change", sortBy);
+const sortByElement = document.getElementById('sortBy');
+sortByElement.addEventListener("change", () => {
+    sortBy(templeList)
+});
 
 getTemples();
