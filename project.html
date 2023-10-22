@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href = "styles/main.css">
+</head>
+<body>
+    <nav>
+        <ul id="menu">
+          <li><a id="toggleMenu">&equiv;</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="w01-task.html">W1 Task</a></li>
+          <li><a href="w03-task.html">W3 Task</a></li>
+          <li><a href="w04-task.html">W4 Task</a></li>
+          <li><a href="w05-task.html">W5 Task</a></li>
+          <li><a href="project.html">Project</a></li>
+        </ul>
+    </nav>
+    <div id="main">
+        <header>
+            <h1 id="header">Mental Health Journal</h1>
+            <h3 id="welcome">Welcome!</h3>
+            <p id="about-the-program">This site is designed to help you overcome anxiety and depression. We will do this by releasing the emotions you feel, and looking at the sunnyside of things.</p>
+        </header>
+    </div>
+    <section id="body">
+        <p id="instructions">When you are ready, press the Prompt button. If you feel you cannot answer that prompt at this time, feel free to hit the prompt button again. Then in the text box below please answer the prompt.</p> 
+        <div id="prompt-button-box">
+            <a class="prompt" href="#">Prompt</a>
+        </div>
+        <div id="prompt-text-box"></div>
+        <textarea id="text-box"></textarea>
+        <div id="delete-button">
+            <a class="delete" href="#">Delete</a>
+        </div>
+        <p id="delete-info">Some journal entries should never be seen after being written. For this reason we have a delete button. After you have answered the prompt, if you feel this could be hurtful to someone, if it were ever to be read please delete it. Writing it out helps to work through the emotions and then it is ok to delete it.</p>
+        <div id="save-button">
+            <a class="save" href="#">Save</a>
+        </div>
+    </section>
+    <footer>
+        <p>Mental Health Journal &copy; 2023 - Terral Shrewsbury</p>
+    </footer>
+    <script src="scripts/project.js"></script>
+</body>
+</html>
