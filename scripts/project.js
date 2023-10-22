@@ -3,7 +3,7 @@ let promptList = [];
 
 const getPrompts = async() => {
     try {
-        const response = await fetch("prompts.json");
+        const response = await fetch("https://raw.githubusercontent.com/terralshrewsbury/cse121b/main/prompts.json");
         const data = await response.json();
         promptList = Array.isArray(data.prompts) ? data.prompts : [];
         console.log(promptList);
