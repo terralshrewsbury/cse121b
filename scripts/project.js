@@ -1,7 +1,6 @@
 const promptTextBox = document.querySelector("#prompt-text-box");
 const promptresponse = document.querySelector("#text-box");
 const data = promptresponse.value;
-const entries = []
 const textBox = document.querySelector 
 
 let promptList = [];
