@@ -433,3 +433,16 @@ footer {
     color:black;
     text-decoration: none;
 }
+#text-box{
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-size: 1.5em;
+}
+#entrylog{
+    grid-column: 2/5;
+    height: fit-content;
+    width: fit-content;
+    font-size: 1em;
+    box-shadow: 5px 5px 10px #6f7364;
+    padding: 20px;
+    margin: 10px;
+}
